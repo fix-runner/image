@@ -12,3 +12,4 @@ This action works around bugs in github runner images
 ## Bugs
 
 * [macOS runners ship broken go & python brew installations](https://github.com/actions/runner-images/pull/7710)
+* Microsoft's Ubuntu mirrors are unreliable
