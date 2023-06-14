@@ -1,0 +1,21 @@
+name: 'Fix runner image'
+description: 'Work around bugs in GitHub hosted runner image configurations'
+author: 'jsoref'
+branding:
+  icon: 'truck'
+  color: 'orange'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Fix runner baseline
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        # https://github.com/actions/runner-images/pull/7710
+        for package in go python@3.11; do
+          if brew info "$package" | grep -q ^/; then
+            brew unlink "$package"
+            brew link --overwrite "$package"
+          fi
+        done
