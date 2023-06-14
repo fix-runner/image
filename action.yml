@@ -9,6 +9,10 @@ runs:
   using: 'composite'
   steps:
     - name: Fix runner baseline
+      if: runner.os == 'Linux'
+      uses: PowerDNS/pdns/set-ubuntu-mirror@meta
+
+    - name: Fix runner baseline
       if: runner.os == 'macOS'
       shell: bash
       run: |
